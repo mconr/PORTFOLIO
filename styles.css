@@ -1,77 +1,48 @@
 body {
     background-color: #D9D6D2;
 }
-
+  
+a {
+    text-decoration: solid;
+    color: #386c5f;
+  }
 .wittgenstein-regular {
     font-family: "Wittgenstein", serif;
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
-}
+  }
 
-/* Effet de saisie */
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
 
-.typing h1 {
+.header h2{
     color: #184930;
-    font-size: 60px;
-    font-family: "Wittgenstein", serif;
-    overflow: hidden; /* Cache le texte jusqu'à son affichage */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    margin: 0 auto; /* Centre le texte */
-    letter-spacing: 0.15em; /* Espacement entre les lettres */
-    animation: typing 4s steps(30, end); /* Animation de saisie sans curseur */
-    border: none; /* Supprime la bordure qui servait de curseur */
 }
 
-.corp {
-    display: flex;
-    margin-top: 10%;
-    justify-content: center;
-    align-items: center;
-}
-
-.imageHome {
-    display: flex;
-    opacity: 0.7;
-    height: auto;
-    padding: auto;
-    border-radius: 10px 10px 50% 50%;
-    box-shadow: 10px 10px 20px #184930;
-    justify-content: center;
-    align-items: center;
-    transition: all .4s ease;
-}
-
-.imageHome:hover {
-    opacity: 1;
-    transition: all .4s ease;
-}
-
-/* NavBar */
-#idheader {
+ /*------------------ NAV BAR CSS -----------------------*/
+ #idheader {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
-    padding: 10px;
-}
+    position: absolute;
+    padding: auto;
+  }
 
-.header {
+  .header {
     width: 80%;
     margin: auto;
     justify-content: space-between;
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
     flex-wrap: wrap;
-}
+  }
 
-.menu-link {
-    position: absolute;
-    top: 15px;
-    right: 10px;
+  
+  .menu-link {
+    position: absolute; /* Utilise un positionnement absolu pour plus de contrôle */
+    top: 15px; /* Ajuste la position verticale */
+    right: 10px; /* Mets un espace de 10px depuis le bord gauche de l'écran */
     height: 30px;
     width: 33px;
     cursor: pointer;
@@ -79,96 +50,155 @@ body {
     flex-direction: column;
     justify-content: space-between;
     margin: 15px;
-}
-
-.bar1, .bar2, .bar3 {
-    background-color: #59321B;
+  }
+  
+  .bar1,
+  .bar2,    
+  .bar3 {
+    background-color: #515940;
     height: 4px;
     width: 100%;
-}
-
-nav ul {
+  }
+  
+  nav {
+    justify-self: flex-end;
+    align-items: end;
+    width: auto; /* Ajuste la largeur selon le contenu */
+  }
+  
+  nav ul {
+    justify-self: flex-end;
     list-style: none;
     display: flex;
     gap: 20px;
-}
-
-nav ul li a {
-    color: #1E2618;
-    padding: 10px 15px;
-    font-size: 20px;
+  }
+  
+  nav ul li a {
+    color: #184930;
     border-radius: 10px;
+    padding: 10px 15px;
+    display: block;
     transition: background 0.3s;
     position: relative;
-}
-
-nav ul li a:hover::before {
-    box-shadow: 0px 0px 15px #697353;
-}
-
-nav ul li a::before {
-    content: " ";
-    background: #697353;
-    position: absolute;
-    inset: 0 0 0 0;
-    z-index: -1;
-    transition: transform 0.3s ease;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+  nav ul li a::before {
     transform: scaleX(0);
+    border-radius: 10px;
     transform-origin: bottom right;
-}
-
-nav ul li a:hover::before {
+  }
+  
+  nav ul li a:hover::before {
     transform: scaleX(1);
     transform-origin: bottom left;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #C3AC8D;
+  }
+  
+nav ul li a::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0 0 0 0;
+    background:#C3AC8D;
+    z-index: -1;
+    transition: transform 0.3s ease;
 }
 
-/* Light Section */
-#light {
+
+/* -------------------- Accueil ------------------------- */
+
+.corp1 {
     display: flex;
-    flex-direction: column;
+    margin-top: 10%;
     justify-content: center;
     align-items: center;
+}
+.corp1 h1 {
+    color: #184930;
+    font-size: 80px;
     position: absolute;
-    padding-left: var(--x6);
-    padding-top: var(--y6);
-    pointer-events: none;
+    opacity: 0; /* Caché par défaut */
+    transition: opacity 0.5s ease, z-index 0.5s ease;
+    z-index: 1;
+  }
+
+
+.imageHome{
+    display: flex;
+    opacity: 0.4;
+    /* width:; */
+    height: auto;
+    border-radius:10px 10px 50% 50% ;
+    box-shadow: 10px 10px 20px   #184930af;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
-#light::before {
-    content: "";
-    height: 22rem;
-    width: 22rem;
-    position: absolute;
-    background-color: #fff;
-    mix-blend-mode: plus-lighter;
-    border-radius: 5000px;
-    filter: blur(100px);
-    opacity: 20%;
+.imageHome:hover {
+    opacity: 1;
+    box-shadow: 10px 10px 20px   #184930;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 
-/* Responsive CSS */
-@media (max-width: 768px) {
+.imageHome:hover + h1, .corp1:hover h1 /* Lors du survol de l'image, afficher "MONIR" et "CHELH" */
+ {
+    opacity: 1; 
+    z-index: 3;
+}
+
+
+
+
+  /* FOOTER GLOBAL STYLES */
+.footer-container {
+    color: #00000062;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    text-align: center;  
+    margin-bottom: 10px;
+}
+
+    /*------------------ RESPONSIVE CSS -----------------------*/
+  /* Small screen styles */
+
+  @media (max-width: 960px) {
     .menu-link {
-        display: flex;
-        margin-right: 30px;
+      display: flex;
+      margin-right: 30px;
     }
   
     nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #effdf6c2;
+      padding: 10px 0;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #effdf6c2;
     }
   
     nav ul.active {
-        display: flex;
+      display: flex;
     }
   
+    .burger-menu {
+      display: flex;
+    } 
+
     .imageHome {
         opacity: 1;
-       
+        width: 60%;
+
     }
 }
