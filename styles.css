@@ -1,5 +1,14 @@
+* {
+    scroll-behavior: smooth; /* Animation fluide au scroll */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body {
     background-color: #D9D6D2;
+    scroll-snap-type: y mandatory; /* Active le snapping sur l'axe vertical */
+    overflow-y: scroll; /* Permet de faire défiler les sections */
 }
   
 a {
@@ -20,7 +29,8 @@ a {
 
  /*------------------ NAV BAR CSS -----------------------*/
  #idheader {
-    position: fixed;
+    margin-top: 30px;
+    position:absolute;
     top: 0;
     width: 100%;
     position: absolute;
@@ -111,61 +121,89 @@ nav ul li a::before {
     transition: transform 0.3s ease;
 }
 
+/* Personnalisation des sections */
+section {
+    height: 100vh; /* Chaque section prend 100% de la hauteur de l'écran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start; /* Définit le point d'accroche de la section */
+    font-size: 40px; /* Juste pour la visibilité */
+}
 
-/* -------------------- Accueil ------------------------- */
+#section1 {
+}
+
+#section2 {
+    background-color: #ECF8F6;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+#section3 {
+}
+
+#section4 {
+    background-color: #697353;
+    box-shadow: 20px 0px 20px #A69068;
+
+}
+
+/* -------------------- section 01 ------------------------- */
 
 .corp1 {
     display: flex;
-    margin-top: 10%;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    position: relative;
 }
+
+/* Le texte est partiellement caché avec une opacité réduite */
 .corp1 h1 {
     color: #184930;
     font-size: 80px;
-    position: absolute;
-    opacity: 0; /* Caché par défaut */
-    transition: opacity 0.5s ease, z-index 0.5s ease;
+    position: relative;
+    opacity: 0; /* Opacité réduite pour le texte caché */
+    transition: opacity 0.5s ease; /* Transition douce pour l'opacité */
     z-index: 1;
-  }
+}
 
-
-.imageHome{
+/* L'image est également partiellement visible */
+.imageHome {
     display: flex;
-    opacity: 0.4;
-    /* width:; */
+    opacity: 0.7;
     height: auto;
-    border-radius:10px 10px 50% 50% ;
-    box-shadow: 10px 10px 20px   #184930af;
+    padding: auto;
+    border-radius: 10px 10px 50% 50%;
+    box-shadow: 10px 10px 20px #184930af;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    transition: all 0.5s ease; 
+    
+    /* z-index: 2; */
 }
 
-.imageHome:hover {
-    opacity: 1;
-    box-shadow: 10px 10px 20px   #184930;
-    transition: all .4s ease;
-    -webkit-transition: all .4s ease;
-}
-
-.imageHome:hover + h1, .corp1:hover h1 /* Lors du survol de l'image, afficher "MONIR" et "CHELH" */
- {
+.corp1 a:hover .imageHome{
     opacity: 1; 
-    z-index: 3;
+    box-shadow: 10px 10px 20px #184930; 
+    transition: all 2s ease;
 }
 
+.corp1 a:hover ~ .corp1text {
+    opacity: 1; 
+    transition: all 1s ease;
 
-
+}
 
   /* FOOTER GLOBAL STYLES */
 .footer-container {
     color: #00000062;
     bottom: 0;
-    position: absolute;
     width: 100%;
     text-align: center;  
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 60px;
+
 }
 
     /*------------------ RESPONSIVE CSS -----------------------*/
@@ -187,6 +225,11 @@ nav ul li a::before {
       width: 100%;
       background-color: #effdf6c2;
     }
+    .header h2{
+        margin-top: 20px;
+        font-size: 20px;
+        display: flex;
+    }
   
     nav ul.active {
       display: flex;
@@ -195,10 +238,23 @@ nav ul li a::before {
     .burger-menu {
       display: flex;
     } 
+    .corp1 {
+        flex-direction: column; /* Empile les éléments verticalement */
+        gap: 40px; /* Réduit l'écart entre les éléments */
+    }
+
+    .corp1 h1 {
+        font-size: 40px; /* Encore réduire la taille du texte pour mobile */
+        opacity: 1; /* Le texte est totalement visible sur mobile */
+        animation-duration: 3s;
+        animation-name: slidein;
+        animation-iteration-count: infinite;
+    }
 
     .imageHome {
+        width: 250px; /* Taille plus petite de l'image pour mobile */
+        height: auto;
         opacity: 1;
-        width: 60%;
-
     }
+
 }
