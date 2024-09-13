@@ -135,7 +135,7 @@ section {
 }
 
 #section2 {
-    background-color: #ECF8F6;
+    background-color: #bfa78ab6;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
@@ -145,7 +145,7 @@ section {
 #section4 {
     background-color: #697353;
     box-shadow: 20px 0px 20px #A69068;
-
+    color: #0000;
 }
 
 /* -------------------- section 01 ------------------------- */
@@ -169,7 +169,7 @@ section {
 }
 
 /* L'image est également partiellement visible */
-.imageHome {
+.imageSection1 {
     display: flex;
     opacity: 0.7;
     height: auto;
@@ -183,7 +183,7 @@ section {
     /* z-index: 2; */
 }
 
-.corp1 a:hover .imageHome{
+.corp1 a:hover .imageSection1{
     opacity: 1; 
     box-shadow: 10px 10px 20px #184930; 
     transition: all 2s ease;
@@ -195,6 +195,43 @@ section {
 
 }
 
+/* -------------------- section 02 ------------------------- */
+
+
+.imageSection2 {
+    display: flex;
+    height: auto;
+
+    border-radius: 10px 10px ;
+    box-shadow: rgba(37, 14, 14, 0.575) 1px 2px 4px 0px, rgba(37, 14, 14, 0.562) 1px 2px 6px 0px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease; 
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+#container {
+    /* position: absolute; */
+    width: 30vw;
+    height: 80pt;
+    filter: url(#threshold) blur(0.6px);
+}
+
+#text1,
+#text2 {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+
+    font-family: "Raleway", sans-serif;
+    font-size: 40pt;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+  
   /* FOOTER GLOBAL STYLES */
 .footer-container {
     color: #00000062;
@@ -251,7 +288,7 @@ section {
         animation-iteration-count: infinite;
     }
 
-    .imageHome {
+    .imageSection1 {
         width: 250px; /* Taille plus petite de l'image pour mobile */
         height: auto;
         opacity: 1;

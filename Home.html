@@ -11,7 +11,6 @@
         <link rel="script" href="/scripts.js">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
-        <script src="/scripts.js" ></script>
 
         <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,38 +42,64 @@
         </header>
 
         <section id="section1">
-            <div class="corp1">
+            <div class="corp1">               
+                <a href=""><img class="imageSection1 " src="/Media/img/image01.png" alt=""></a>
+                <h1 class="corp1text">CHELH <!--</h1>
+                   <h1 class="corp1text"> --> MONIR</h1>
+            </div>
+        </section>
 
-                
-               
-                <a href=""><img class="imageHome " src="/Media/img/image01.png" alt=""></a>
-   
-                 <h1 class="corp1text">CHELH <!--</h1>
-               <h1 class="corp1text"> --> MONIR</h1>
 
+
+
+
+        <section id="section2">  
+            <img class="imageSection2" src="/Media/img/image03.png" alt="">
+            <div id="container">
+                <span id="text1"></span>
+                <span id="text2"></span>
             </div>
 
+            <svg id="filters">
+                <defs>
+                    <filter id="threshold">
+                        <feColorMatrix in="SourceGraphic" type="matrix" values="
+                            1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 255 -140" />
+                    </filter>
+                </defs>
+            </svg>
         </section>
 
 
 
-        
 
-        <section id="section2">
-            <h1>Section 2</h1>
-        </section>
         <section id="section3">
-            <h1>Section 3</h1>
         </section>
+
+
+
+
+
         <section id="section4">
-            <h1>Section 4</h1>
+        </section>
+
+
+
+
+        <section id="section5">
         </section>
 
 
         <footer class="footer-container">
-            
                 <p>&copy; 2024 Monir Chelh. All Rights Reserved.</p>
-                    
         </footer>
+
+
+        <script src="/scripts.js" ></script>
+
+
     </body>
 </html>
