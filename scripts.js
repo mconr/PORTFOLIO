@@ -18,9 +18,7 @@ const texts = [
     "ENGINEER",
     "NOT",
     "A",
-    "FRAMEWORKER",
-    ":)",
-    "by @MCONR"
+     "FRAMEWORKER"
 ];
 
 const morphTime = 1;

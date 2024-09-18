@@ -124,14 +124,17 @@ nav ul li a::before {
 /* Personnalisation des sections */
 section {
     height: 100vh; /* Chaque section prend 100% de la hauteur de l'écran */
+    padding-left: 10%;
+    padding-right: 10%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     scroll-snap-align: start; /* Définit le point d'accroche de la section */
     font-size: 40px; /* Juste pour la visibilité */
 }
 
 #section1 {
+    justify-content:center;
 }
 
 #section2 {
@@ -140,6 +143,12 @@ section {
 }
 
 #section3 {
+    display: flex;
+    justify-items:center;
+    justify-content: center;
+    gap: 50px;
+    padding: auto;
+    margin: auto;
 }
 
 #section4 {
@@ -195,37 +204,23 @@ section {
 
 }
 
-/* -------------------- section 02 ------------------------- */
+/* -------------------- section 03 ------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
 
 
-.imageSection2 {
-    display: flex;
+
+#filters {
+    width: 30vh;
     height: auto;
 
-    border-radius: 10px 10px ;
-    box-shadow: rgba(37, 14, 14, 0.575) 1px 2px 4px 0px, rgba(37, 14, 14, 0.562) 1px 2px 6px 0px;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease; 
 }
 
-
-
-.photo{
-
-    transform: translate(-50%, -50%);
-    display: flex;
-  }
-  
-  .photo img{
+#container {
     width: 30vh;
-    object-fit: cover;
-    filter: grayscale(100%) contrast(120%);
-    box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
-    display: block;
-    transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    margin-top: -10px;
-  }
+    height: 80pt;
+    /* transform: translate(-50%, -50%); */
+    filter: url(#threshold) blur(0.6px);
+}
   
   .photo:hover img{
     box-shadow: 1px 1px 10px 0 rgba(0,0,0,.1);
@@ -236,17 +231,17 @@ section {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    margin-top: -10px;
+    /* top: 0; */
+    border-radius: 10px;
   }
   
   .photo .glow{
-    display: block;
-    position:absolute;
+    display: flex;
+    /* position:absolute; */
     width: 40%;
-    height: 200%;
+    height: 100%;
     background: rgba(255,255,255,.2);
-    top: 0;
+    /* top: 0; */
     filter: blur(5px);
     transform: rotate(45deg) translate(-450%, 0);
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -259,42 +254,54 @@ section {
   
   .photo:hover img,
   .photo:hover .glow-wrap{
-    margin-top: 0;
+    /* margin-top: 0; */
     filter: none;
   }
   
- .textSection2{
-    font-size: larger;
-    color: #A69068;
+ .textSection3{
+    font-size: 29px;
+    color: #a69068a8;
     position: absolute;
-    /* z-index: 1; */
-    transform: translate(-25%, -65%);
-    /* font-family: 'Montserrat', sans-serif; */
-    margin: 0;
+    z-index: 0;
+    /* transform: translate(-0%, -15%); */
+    /* margin: 0; */
     line-height: 1.2;
   }
 
-@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
-#container {
-    /* position: absolute; */
-    width: 30vw;
-    height: 80pt;
-    filter: url(#threshold) blur(0.6px);
-}
 
 #text1,
 #text2 {
     position: absolute;
     width: 100%;
-    display: inline-block;
-
+    display: flex;
     font-family: "Raleway", sans-serif;
     font-size: 40pt;
-
-    text-align: center;
-
+    text-align: left;
+    color: #620d14b0;
     user-select: none;
+    z-index: 11; 
 }
+
+.photo {
+    /* position:static; Assure-toi que la photo soit le point de référence pour l'élément #container */
+    transform: translate(-20%, -50%);
+    display: flex;
+}
+
+.photo img {
+    width: 40vh;
+    display: flex ;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    box-shadow: 10px 15px 25px 0 rgba(0, 0, 0, .2);
+    transition: all .1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-radius:0 20px   0 20px;
+
+}
+
+
+
+
 
   
   /* FOOTER GLOBAL STYLES */
