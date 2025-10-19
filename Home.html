@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="icon" type="image/x-icon" href="/Media/logo/mcLogo.png">
-        <title>My Portfolio - MCONR</title>
-        <meta name="description" content="">
+        <title>Mon Portfolio - MCONR</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/styles.css">  
-        <link rel="script" href="/scripts.js">
+        <meta name="description" content="Portfolio de CHELH MONIR — Développeur Logiciel / Full‑stack Java & Python.">
+
+        <link rel="stylesheet" href="/styles.css">
+        <!-- Supprimé: <link rel="script" href="/scripts.js"> -->
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
 
@@ -19,17 +21,28 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" />
     </head>
-    <body>
-        <header id="idheader" >
+    <body id="home">
+  <div id="bg-anim" aria-hidden="true">
+    <span class="bg-blob b1"></span>
+    <span class="bg-blob b2"></span>
+    <span class="bg-blob b3"></span>
+  </div>
+  <header id="idheader">
             <div class="header">
-                <div>
-                    <a href="#"><h2 class="wittgenstein-regular">MONIR CHELH</h2></a>
-                </div>
+                <div class="brand">
+  <a href="#home" class="brand-link" aria-label="Accueil">
+    <img src="/Media/logo/mcLogowhite.png" alt="Monir Chelh" class="brand-logo brand-invert">
+    <span class="sr-only">Accueil</span>
+  </a>
+</div>
 
-                <div class="menu-link">
+                <div class="menu-link" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
@@ -38,96 +51,541 @@
                 <nav>
                     <ul>
                         <li><a href="#home">Accueil</a></li>
-                        <li><a href="#about">La Vie Pro</a></li>
-                        <li><a href="#services">La Vie no Pro</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#experience">Expériences</a></li>
+                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="#education">Formation</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <section id="section1">
-            <div class="corp1">               
-                <a href=""><img class="imageSection1 " src="/Media/img/image01.png" alt=""></a>
-                <h1 class="corp1text">CHELH <!--</h1>
-                   <h1 class="corp1text"> --> MONIR</h1>
+        <!-- HERO -->
+        <section id="section1" class="hero">
+          <div class="hero-grid">
+            <div class="hero-col">
+              <h1 class="hero-title wittgenstein-regular">CHELH MONIR</h1>
+              <p class="hero-subtitle">Développeur Logiciel — Full‑stack Java & Python</p>
+
+              <div class="hero-badges">
+                <span class="hero-badge">Java</span>
+                <span class="hero-badge">Spring Boot</span>
+                <span class="hero-badge">Python</span>
+                <span class="hero-badge">Django</span>
+                <span class="hero-badge">PHP</span>
+                <span class="hero-badge">Design Patterns</span>
+                <span class="hero-badge">SQL</span>
+              </div>
+
+              <div class="hero-cta">
+                <a class="btn" href="#projects">Voir mes projets</a>
+                <a class="btn btn-secondary" href="#contact">Me contacter</a>
+              </div>
+            </div>
+
+            <div class="hero-portrait shape-blob">
+              <span class="hero-blob" aria-hidden="true"></span>
+              <img class="hero-img" src="/Media/img/image0.png" alt="Portrait de Monir">
+            </div>
+          </div>
+        </section>
+
+        <!-- À PROPOS -->
+        <section id="about" class="section">
+            <div class="hero-subtitle">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Mon chemin, entre chiffres et idées, entre théorie et pratique,
+                m’a appris que l’informatique n’est pas seulement une affaire de machines,
+                mais une manière de comprendre, de créer et parfois même de réparer.
+                Ce portfolio n’est pas une vitrine figée : c’est un carnet de route, un espace vivant où mes projets racontent mes apprentissages,
+                mes défis, et ma volonté constante de grandir. Si la technologie change, l’humain derrière l’écran reste
+                — curieux, persévérant, animé par l’envie de bien faire. Bienvenue dans mon univers.</p>
             </div>
         </section>
 
+        <!-- EXPÉRIENCES -->
+        <section id="experience" class="section">
+            <h2 class="section-title">Expériences</h2>
 
+            <div class="timeline">
+                <article class="item">
+                    <header>
+                        <h3>Employé Polyvalent</h3>
+                        <div class="meta">
+                            <span>Carrefour — Lormont, Bordeaux</span>
+                            <span>Juillet 2025 — Aujourd’hui</span>
+                        </div>
+                    </header>
+                    <ul>
+                        <li>Réalisation des tâches confiées selon les procédures données.</li>
+                        <li>Gestion du temps de manière efficace afin d’accomplir toutes les tâches imparties.</li>
+                        <li>Collaboration en équipe, communication et partage des idées.</li>
+                    </ul>
+                </article>
 
-
-
-        <section id="section2">  
-           
-        </section>
-
-
-
-
-        <section id="section3">
-            
-            
-            <div>
-                <a href="#" class="photo">
-                <!-- <h1 class="textSection3 wittgenstein-regular" >CHELH &ensp;  MONIR</h1> -->
-                <img src="/Media/img/image03.png" />
-                <div class="glow-wrap">
-                    <i class="glow"></i>
-                </div>
-                </a>
-            </div>
-
-
-
-            <div >
-                
-                <div id="container">
-                    <span id="text1"></span>
-                    <span id="text2"></span>
-                </div>        
-                <svg id="filters">
-                    <defs>
-                        <filter id="threshold">
-                            <feColorMatrix in="SourceGraphic" type="matrix" values="
-                                1 0 0 0 0
-                                0 1 0 0 0
-                                0 0 1 0 0
-                                0 0 0 255 -140" />
-                        </filter>
-                    </defs>
-                </svg>          <p class="tangerine-regular" style=" font-size:20px; ">Be a Software Engineer Nor a Freamworker ...</p>
-            </div>
-
-
-            <div style="    display: block;
-                            clear: both;" >
-               
-
+                <article class="item">
+                    <header>
+                        <h3>Stage de fin d’études — DUT</h3>
+                        <div class="meta">
+                            <span>Cabinet Comptable Chahoudi — Agadir</span>
+                            <span>Avril — Mai 2021</span>
+                        </div>
+                    </header>
+                    <ul>
+                        <li>Application desktop de numérisation et gestion des documents/factures du cabinet.</li>
+                        <li>Conception de la base de données et mise en place d’un archivage structuré.</li>
+                        <li>Gestion des droits d’accès et consultation rapide des fichiers.</li>
+                    </ul>
+                </article>
             </div>
         </section>
 
+        <!-- PROJETS -->
+        <section id="projects" class="section">
+  <h2 class="section-title">Projets</h2>
 
+  <div class="cards">
+    <article class="card" 
+      data-title="Intelligent School Management"
+      data-desc="Application web académique : gestion des notes, réclamations et chatbot."
+      data-stack="MySQL, Python (Django), JavaScript, Tailwind, Git, Jira, Docker, LangChain"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>Intelligent School Management</h3>
+        <p class="desc">Application web académique : gestion des notes, réclamations et chatbot.</p>
+        <p class="stack">Stack: MySQL, Python (Django), JavaScript, Tailwind</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
+    <article class="card"
+      data-title="Plateforme Gestion Clubs Uni"
+      data-desc="Réservations d’espaces, gestion d’événements, rôles différenciés."
+      data-stack="MySQL, PHP, HTML/CSS/Bootstrap, JavaScript, jQuery, Git, Jira"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>Plateforme Gestion Clubs Uni</h3>
+        <p class="desc">Réservations d’espaces, gestion d’événements, rôles différenciés.</p>
+        <p class="stack">Stack: MySQL, PHP, Bootstrap, jQuery</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
+    <article class="card"
+      data-title="Application de gestion CCC"
+      data-desc="Clients, factures, documents, archivage et contrôle des droits."
+      data-stack="VB.NET, VBA, MySQL"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>Application de gestion CCC</h3>
+        <p class="desc">Clients, factures, documents, archivage et contrôle des droits.</p>
+        <p class="stack">Stack: VB.NET, VBA, MySQL</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
-        <section id="section4">
-        </section>
+    <article class="card"
+      data-title="Checkers (Jeu de Dames) — IA"
+      data-desc="IA Minimax, Alpha‑Beta, MCTS, MVC, CLI/GUI, undo/redo."
+      data-stack="Java, JavaFX, JUnit, JavaDoc, Maven, Git, Jira"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>Checkers (Jeu de Dames) — IA</h3>
+        <p class="desc">IA Minimax, Alpha‑Beta, MCTS, MVC, CLI/GUI, undo/redo.</p>
+        <p class="stack">Stack: Java, JavaFX, Maven</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
+    <article class="card"
+      data-title="Jeu 2D Civilisation"
+      data-desc="Gestion ressources/populations/bâtiments, niveaux de difficulté."
+      data-stack="Java, JavaFX, JUnit, JavaDoc, Gradle, Git"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>Jeu 2D Civilisation</h3>
+        <p class="desc">Gestion ressources/populations/bâtiments, niveaux de difficulté.</p>
+        <p class="stack">Stack: Java, JavaFX, Gradle</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
+    <article class="card"
+      data-title="TaskFlow"
+      data-desc="To Do / In Progress / Done — pratique Spring Boot & React."
+      data-stack="Spring Boot, H2, Security+JWT, React, Vite, Tailwind, Maven"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>TaskFlow</h3>
+        <p class="desc">To Do / In Progress / Done — pratique Spring Boot & React.</p>
+        <p class="stack">Stack: Spring Boot, React, Tailwind</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
 
+      <article class="card"
+      data-title="TaskFlow"
+      data-desc="To Do / In Progress / Done — pratique Spring Boot & React."
+      data-stack="Spring Boot, H2, Security+JWT, React, Vite, Tailwind, Maven"
+      data-github="https://github.com/..." data-demo="#">
+      <div class="card-body">
+        <h3>TaskFlow</h3>
+        <p class="desc">To Do / In Progress / Done — pratique Spring Boot & React.</p>
+        <p class="stack">Stack: Spring Boot, React, Tailwind</p>
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-sm" href="https://github.com/..." target="_blank" rel="noopener" onclick="event.stopPropagation()">Code GitHub</a>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation()">Démo</a>
+      </div>
+    </article>
+  </div>
 
-        <section id="section5">
-        </section>
+</section>
 
+        <!-- FORMATION ---------------------------------------------------------------->
+        <section id="education" class="section">
+  <h2 class="section-title">Formation</h2>
+
+  <div class="edu-timeline">
+    <article class="edu-card">
+      <span class="edu-dot"></span>
+      <header class="edu-head">
+        <h3>Master Informatique — Parcours Génie Logiciel</h3>
+        <span class="edu-meta">Université de Bordeaux — Bordeaux</span>
+      </header>
+      <ul class="edu-points">
+        <li>Conception logicielle, architectures, qualité et tests.</li>
+        <li>Projet fil rouge en équipe (outillage: Git, Maven/Gradle, CI).</li>
+      </ul>
+    </article>
+
+    <article class="edu-card">
+      <span class="edu-dot"></span>
+      <header class="edu-head">
+        <h3>Licence Informatique & Mathématiques — Parcours Sciences des Données</h3>
+        <span class="edu-meta">Parcours Data / Statistiques</span>
+      </header>
+      <ul class="edu-points">
+        <li>Structures de données, algorithmes, probabilités et statistiques.</li>
+        <li>Python scientifique (NumPy, Pandas), bases de données.</li>
+      </ul>
+    </article>
+
+    <article class="edu-card">
+      <span class="edu-dot"></span>
+      <header class="edu-head">
+        <h3>DUT Génie Informatique</h3>
+        <span class="edu-meta">École Supérieure de Technologies — Guelmim</span>
+      </header>
+      <ul class="edu-points">
+        <li>Développement multi‑couches, POO, bases de données.</li>
+        <li>Stage: application desktop de gestion documentaire pour cabinet.</li>
+      </ul>
+    </article>
+
+    <article class="edu-card">
+      <span class="edu-dot"></span>
+      <header class="edu-head">
+        <h3>BAC Sciences Mathématiques B</h3>
+        <span class="edu-meta">Lycée Hassan II — Oulad Teima</span>
+      </header>
+    </article>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <h2 class="section-title">Compétences</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Langages</h3>
+      <div class="skill-tags">
+        <span class="tag">Java</span>
+        <span class="tag">Python</span>
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">TypeScript</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Back‑end</h3>
+      <div class="meters">
+        <div class="meter">
+          <span class="label">Spring Boot</span>
+          <span class="bar" style="--level:.85"></span>
+        </div>
+        <div class="meter">
+          <span class="label">Django</span>
+          <span class="bar" style="--level:.8"></span>
+        </div>
+        <div class="meter">
+          <span class="label">Node.js</span>
+          <span class="bar" style="--level:.6"></span>
+        </div>
+      </div>
+      <p class="hint">REST APIs, Auth (JWT), validation, tests.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Front‑end</h3>
+      <div class="skill-tags">
+        <span class="tag">React</span>
+        <span class="tag">JavaFX</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">jQuery</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Data & Bases</h3>
+      <div class="meters">
+        <div class="meter">
+          <span class="label">SQL / MySQL</span>
+          <span class="bar" style="--level:.8"></span>
+        </div>
+        <div class="meter">
+          <span class="label">H2 / SQLite</span>
+          <span class="bar" style="--level:.65"></span>
+        </div>
+      </div>
+      <p class="hint">Modélisation, requêtes, optimisation simple.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>DevOps & Outils</h3>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Maven</span>
+        <span class="tag">Gradle</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Méthodes & Qualité</h3>
+      <div class="skill-tags">
+        <span class="tag">POO</span>
+        <span class="tag">MVC</span>
+        <span class="tag">TDD</span>
+        <span class="tag">JUnit</span>
+        <span class="tag">Agile</span>
+      </div>
+      <p class="hint">Revue de code, JavaDoc, CI simple.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Langues</h3>
+      <div class="skill-tags">
+        <span class="tag">Français</span>
+        <span class="tag">Anglais</span>
+        <span class="tag">Arabe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="section">
+  <h2 class="section-title">Certifications</h2>
+
+  <div class="cert-grid">
+    <a class="cert-card" href="https://www.sololearn.com/certificates/CT-HGK4PBM1" target="_blank" rel="noopener" data-provider="sololearn">
+      <div class="cert-icon">SL</div>
+      <div class="cert-content">
+        <h3 class="cert-title">C</h3>
+        <p class="cert-meta">SoloLearn</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://www.sololearn.com/certificates/CT-ESRYV1NK" target="_blank" rel="noopener" data-provider="sololearn">
+      <div class="cert-icon">SL</div>
+      <div class="cert-content">
+        <h3 class="cert-title">C++</h3>
+        <p class="cert-meta">SoloLearn</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://www.sololearn.com/certificates/CT-J8VART7M" target="_blank" rel="noopener" data-provider="sololearn">
+      <div class="cert-icon">SL</div>
+      <div class="cert-content">
+        <h3 class="cert-title">PHP</h3>
+        <p class="cert-meta">SoloLearn</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://www.sololearn.com/certificates/CC-TGATAZBW" target="_blank" rel="noopener" data-provider="sololearn">
+      <div class="cert-icon">SL</div>
+      <div class="cert-content">
+        <h3 class="cert-title">Java</h3>
+        <p class="cert-meta">SoloLearn</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://www.sololearn.com/certificates/CC-UCEFGA4N" target="_blank" rel="noopener" data-provider="sololearn">
+      <div class="cert-icon">SL</div>
+      <div class="cert-content">
+        <h3 class="cert-title">AngularJS</h3>
+        <p class="cert-meta">SoloLearn</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://www.hackerrank.com/certificates/iframe/25465a904be8" target="_blank" rel="noopener" data-provider="hackerrank">
+      <div class="cert-icon">HR</div>
+      <div class="cert-content">
+        <h3 class="cert-title">Python</h3>
+        <p class="cert-meta">HackerRank</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="cert-card" href="https://courses.cognitiveclass.ai/certificates/dfe94e9ef364432398bf8e1772d047bc" target="_blank" rel="noopener" data-provider="cognitive">
+      <div class="cert-icon">CC</div>
+      <div class="cert-content">
+        <h3 class="cert-title">Python for Data Science</h3>
+        <p class="cert-meta">CognitiveClass</p>
+      </div>
+      <span class="cert-open" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section">
+  <h2 class="section-title">Contact</h2>
+
+  <div class="contact-shell">
+    <aside class="c-left">
+      <div class="intro-box">
+        <h3>Discutons de votre projet</h3>
+        <p>Disponible pour un stage, alternance ou mission freelance. Réponse rapide.</p>
+      </div>
+
+      <ul class="contact-list" role="list">
+        <li class="c-item">
+          <span class="c-ico">✉️</span>
+          <div class="c-txt">
+            <span class="small">Email</span>
+            <a href="mailto:MonirChelh05@gmail.com" class="value">MonirChelh05@gmail.com</a>
+          </div>
+          <button type="button" class="copy-btn" data-copy="MonirChelh05@gmail.com" title="Copier l’email">Copier</button>
+        </li>
+
+        <li class="c-item">
+          <span class="c-ico">📞</span>
+          <div class="c-txt">
+            <span class="small">Téléphone</span>
+            <a href="tel:+33753767129" class="value">+33 7 53 76 71 29</a>
+          </div>
+          <button type="button" class="copy-btn" data-copy="+33753767129" title="Copier le numéro">Copier</button>
+        </li>
+
+        <li class="c-item">
+          <span class="c-ico">📍</span>
+          <div class="c-txt">
+            <span class="small">Localisation</span>
+            <span class="value">Bordeaux, France</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="social-row">
+        <a class="btn ghost" href="https://www.linkedin.com/in/monir-chelh/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/mconr" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="/Media/cv/Monir_CV.pdf" download>Télécharger mon CV</a>
+      </div>
+    </aside>
+
+    <div class="c-right">
+      <form id="contact-form" class="contact-card" autocomplete="on" novalidate>
+        <div class="f-row">
+          <label class="f-field">
+            <input type="text" name="name" placeholder=" " required>
+            <span class="f-label">Nom</span>
+          </label>
+          <label class="f-field">
+            <input type="email" name="email" placeholder=" " required>
+            <span class="f-label">Email</span>
+          </label>
+        </div>
+
+        <label class="f-field">
+          <input type="text" name="subject" id="subject-input" placeholder=" " required>
+          <span class="f-label">Sujet</span>
+        </label>
+
+        <div class="chips" aria-label="Choisir un sujet rapide">
+          <button type="button" class="chip" data-subject="Collaboration">Collaboration</button>
+          <button type="button" class="chip" data-subject="Stage / Alternance">Stage / Alternance</button>
+          <button type="button" class="chip" data-subject="Freelance">Freelance</button>
+          <button type="button" class="chip" data-subject="Autre">Autre</button>
+        </div>
+
+        <label class="f-field">
+          <textarea name="message" rows="6" placeholder=" " required></textarea>
+          <span class="f-label">Message</span>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Envoyer</button>
+          <span id="contact-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="copy-toast" class="toast" role="status" aria-live="polite" hidden>Copié dans le presse‑papiers</div>
+</section>
 
         <footer class="footer-container">
-                <p>&copy; 2024 Monir Chelh. All Rights Reserved.</p>
+            <p>&copy; 2024 Monir Chelh. Tous droits réservés.</p>
         </footer>
 
+        <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" hidden>
+  <div class="modal-panel">
+    <div class="modal-header">
+      <h3 class="modal-title"></h3>
+      <button class="modal-close" aria-label="Fermer">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc"></p>
+      <p class="modal-meta"><strong>Stack:</strong> <span class="stack"></span></p>
+    </div>
+    <div class="modal-actions">
+      <a class="btn" id="modal-github" target="_blank" rel="noopener">Code GitHub</a>
+      <a class="btn btn-secondary" id="modal-demo" target="_blank" rel="noopener">Démo</a>
+    </div>
+  </div>
+</div>
 
-        <script src="/scripts.js" ></script>
-
-
+        <script src="./scripts.js" defer></script>
     </body>
 </html>

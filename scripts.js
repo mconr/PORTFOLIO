@@ -6,87 +6,179 @@ $(document).ready(function() {
 
 
 // -------------------------------------------------- animation of the section 2
-const elts = {
-    text1: document.getElementById("text1"),
-    text2: document.getElementById("text2")
-};
 
-const texts = [
-    "BE",
-    "A",
-    "SOFTWARE",
-    "ENGINEER",
-    "NOT",
-    "A",
-     "FRAMEWORKER"
-];
+// Navigation hamburger (classe .open)
+(() => {
+  const menu = document.querySelector('.menu-link');
+  const nav = document.querySelector('header nav');
+  if (!menu || !nav) return;
+  const toggle = () => nav.classList.toggle('open');
+  menu.addEventListener('click', toggle);
+  menu.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') toggle(); });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+})();
 
-const morphTime = 1;
-const cooldownTime = 0.25;
+// Smooth scroll avec offset header
+(() => {
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - 64;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+})();
 
-let textIndex = texts.length - 1;
-let time = new Date();
-let morph = 0;
-let cooldown = cooldownTime;
+// Morphing text sécurisé (ne tourne que si #text1/#text2 existent)
+(() => {
+  const t1 = document.getElementById('text1');
+  const t2 = document.getElementById('text2');
+  if (!t1 || !t2) return;
 
-elts.text1.textContent = texts[textIndex % texts.length];
-elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+  const texts = [
+    "Développeur Logiciel",
+    "Full‑stack Java & Python",
+    "Spring Boot • React",
+    "Django • Tailwind CSS",
+    "SQL • Git • Docker"
+  ];
+  const morphTime = 1.2, cooldownTime = 0.6;
+  let textIndex = 0, time = new Date(), morph = 0, cooldown = cooldownTime;
 
-function doMorph() {
-    morph -= cooldown;
-    cooldown = 0;
+  t1.textContent = texts[textIndex % texts.length];
+  t2.textContent = texts[(textIndex + 1) % texts.length];
 
-    let fraction = morph / morphTime;
-
-    if (fraction > 1) {
-        cooldown = cooldownTime;
-        fraction = 1;
-    }
-
-    setMorph(fraction);
-}
-
-function setMorph(fraction) {
-    elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-    elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-
+  function setMorph(fraction) {
+    t2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    t2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
     fraction = 1 - fraction;
-    elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-    elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    t1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    t1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    t1.textContent = texts[textIndex % texts.length];
+    t2.textContent = texts[(textIndex + 1) % texts.length];
+  }
+  function doMorph() { morph -= cooldown; cooldown = 0; let f = morph / morphTime; if (f > 1) { cooldown = cooldownTime; f = 1; } setMorph(f); }
+  function doCooldown() { morph = 0; t2.style.filter = ""; t2.style.opacity = "100%"; t1.style.filter = ""; t1.style.opacity = "0%"; }
 
-    elts.text1.textContent = texts[textIndex % texts.length];
-    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
-}
-
-function doCooldown() {
-    morph = 0;
-
-    elts.text2.style.filter = "";
-    elts.text2.style.opacity = "100%";
-
-    elts.text1.style.filter = "";
-    elts.text1.style.opacity = "0%";
-}
-
-function animate() {
+  (function animate() {
     requestAnimationFrame(animate);
-
-    let newTime = new Date();
-    let shouldIncrementIndex = cooldown > 0;
-    let dt = (newTime - time) / 1000;
-    time = newTime;
-
+    const newTime = new Date(); const dt = (newTime - time) / 1000; time = newTime;
     cooldown -= dt;
+    if (cooldown <= 0) { if (cooldown < 0) textIndex++; doMorph(); } else { doCooldown(); }
+  })();
+})();
 
-    if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-            textIndex++;
-        }
+// Reveal on scroll
+(() => {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.section .card, .section .item, .section .list li').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
+    obs.observe(el);
+  });
+  const style = document.createElement('style');
+  style.textContent = `.section .in { opacity: 1 !important; transform: none !important; transition: all .5s ease; }`;
+  document.head.appendChild(style);
+})();
 
-        doMorph();
-    } else {
-        doCooldown();
-    }
-}
+// ---- Modal projets (avec bouton “Détails” au hover) ----
+(() => {
+  const modal = document.getElementById('project-modal');
+  if (!modal) return;
 
-animate();
+  const titleEl = modal.querySelector('.modal-title');
+  const descEl  = modal.querySelector('.modal-desc');
+  const stackEl = modal.querySelector('.modal-meta .stack');
+  const ghBtn   = modal.querySelector('#modal-github');
+  const demoBtn = modal.querySelector('#modal-demo');
+  const closeBtn= modal.querySelector('.modal-close');
+  let lastFocus = null;
+
+  function openModal(data){
+    titleEl.textContent = data.title || '';
+    descEl.textContent  = data.desc || '';
+    stackEl.textContent = data.stack || '';
+    if (data.github && data.github !== '#') { ghBtn.href = data.github; ghBtn.classList.remove('is-disabled'); ghBtn.setAttribute('aria-disabled','false'); }
+    else { ghBtn.href = '#'; ghBtn.classList.add('is-disabled'); ghBtn.setAttribute('aria-disabled','true'); }
+    if (data.demo && data.demo !== '#') { demoBtn.href = data.demo; demoBtn.classList.remove('is-disabled'); demoBtn.setAttribute('aria-disabled','false'); }
+    else { demoBtn.href = '#'; demoBtn.classList.add('is-disabled'); demoBtn.setAttribute('aria-disabled','true'); }
+
+    lastFocus = document.activeElement;
+    modal.removeAttribute('hidden');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+  }
+  function closeModal(){
+    modal.setAttribute('hidden','');
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.cards .card').forEach(card => {
+    // Bouton “Détails” affiché au hover
+    const hover = document.createElement('div');
+    hover.className = 'card-hover';
+    hover.innerHTML = '<button type="button" class="btn btn-sm btn-details">Détails</button>';
+    card.appendChild(hover);
+
+    const open = () => openModal({
+      title: card.dataset.title, desc: card.dataset.desc, stack: card.dataset.stack,
+      github: card.dataset.github, demo: card.dataset.demo
+    });
+
+    card.addEventListener('click', open);
+    hover.querySelector('.btn-details').addEventListener('click', (e) => { e.stopPropagation(); open(); });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal(); });
+})();
+
+// ---- Contact (copie + chips + mailto) ----
+(() => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const status = document.getElementById('contact-status');
+  const subjectInput = document.getElementById('subject-input');
+  const toast = document.getElementById('copy-toast');
+  const to = 'MonirChelh05@gmail.com';
+
+  document.querySelectorAll('.chips .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chips .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      if (subjectInput) subjectInput.value = chip.dataset.subject || '';
+    });
+  });
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const txt = btn.getAttribute('data-copy') || '';
+      try {
+        await navigator.clipboard.writeText(txt);
+        if (toast) { toast.textContent = 'Copié: ' + txt; toast.removeAttribute('hidden'); setTimeout(() => toast.setAttribute('hidden',''), 1400); }
+      } catch { /* fallback simple */ }
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const name = String(fd.get('name')||'').trim();
+    const email= String(fd.get('email')||'').trim();
+    const subject=String(fd.get('subject')||'').trim();
+    const message=String(fd.get('message')||'').trim();
+    const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk || !subject || !message){ status.textContent='Veuillez compléter correctement tous les champs.'; return; }
+    const mailto=`mailto:${to}?subject=${encodeURIComponent(subject+' — '+name)}&body=${encodeURIComponent(message+'\n\n— '+name+' <'+email+'>')}`;
+    status.textContent='Ouverture de votre client e‑mail…';
+    window.location.href=mailto;
+    setTimeout(()=>{ form.reset(); status.textContent='Message prêt dans votre client e‑mail.'; },1200);
+  });
+})();
