@@ -86,7 +86,7 @@ $(document).ready(function() {
   document.head.appendChild(style);
 })();
 
-// ---- Modal projets (avec bouton “Détails” au hover) ----
+// ---- Modal projets (avec bouton “Détails” + image) ----
 (() => {
   const modal = document.getElementById('project-modal');
   if (!modal) return;
@@ -95,24 +95,73 @@ $(document).ready(function() {
   const descEl  = modal.querySelector('.modal-desc');
   const stackEl = modal.querySelector('.modal-meta .stack');
   const ghBtn   = modal.querySelector('#modal-github');
-  const demoBtn = modal.querySelector('#modal-demo');
+  const mediaEl = modal.querySelector('.modal-media');
+  const imgEl   = modal.querySelector('.modal-image');
   const closeBtn= modal.querySelector('.modal-close');
   let lastFocus = null;
+
+  function slugify(str=''){
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  }
+
+  function addCaseVariants(path){
+    const out = [path];
+    if (path.startsWith('/media/')) out.push(path.replace('/media/','/Media/'));
+    if (path.startsWith('/Media/')) out.push(path.replace('/Media/','/media/'));
+    return out;
+  }
+
+  function loadImageCandidates(candidates){
+    if (!mediaEl || !imgEl){ return; }
+    const list = Array.from(new Set(
+      (candidates || []).flatMap(addCaseVariants)
+    )).filter(Boolean);
+
+    if (!list.length){ mediaEl.hidden = true; return; }
+
+    let i = 0;
+    mediaEl.hidden = true;
+
+    const tryNext = () => {
+      if (i >= list.length){ mediaEl.hidden = true; return; }
+      const raw = list[i++];
+
+      // encode les espaces/accents mais conserve les /
+      const src = encodeURI(raw);
+      imgEl.onload = () => { mediaEl.hidden = false; imgEl.onload = null; imgEl.onerror = null; };
+      imgEl.onerror = tryNext;
+      imgEl.src = src;
+    };
+    tryNext();
+  }
 
   function openModal(data){
     titleEl.textContent = data.title || '';
     descEl.textContent  = data.desc || '';
     stackEl.textContent = data.stack || '';
-    if (data.github && data.github !== '#') { ghBtn.href = data.github; ghBtn.classList.remove('is-disabled'); ghBtn.setAttribute('aria-disabled','false'); }
-    else { ghBtn.href = '#'; ghBtn.classList.add('is-disabled'); ghBtn.setAttribute('aria-disabled','true'); }
-    if (data.demo && data.demo !== '#') { demoBtn.href = data.demo; demoBtn.classList.remove('is-disabled'); demoBtn.setAttribute('aria-disabled','false'); }
-    else { demoBtn.href = '#'; demoBtn.classList.add('is-disabled'); demoBtn.setAttribute('aria-disabled','true'); }
+    imgEl.alt = data.title ? `Illustration du projet ${data.title}` : 'Illustration du projet';
+
+    if (data.github && data.github !== '#') {
+      ghBtn.href = data.github; ghBtn.classList.remove('is-disabled'); ghBtn.setAttribute('aria-disabled','false');
+    } else {
+      ghBtn.href = '#'; ghBtn.classList.add('is-disabled'); ghBtn.setAttribute('aria-disabled','true');
+    }
+
+    const cands = [];
+    if (data.img) cands.push(data.img);
+    const s = slugify(data.title || '');
+    if (s) {
+      cands.push(`/Media/img/projets/${s}.webp`, `/Media/img/projets/${s}.jpg`, `/Media/img/projets/${s}.png`);
+    }
+    loadImageCandidates(cands);
 
     lastFocus = document.activeElement;
     modal.removeAttribute('hidden');
     document.body.classList.add('modal-open');
     closeBtn.focus();
   }
+
   function closeModal(){
     modal.setAttribute('hidden','');
     document.body.classList.remove('modal-open');
@@ -120,19 +169,21 @@ $(document).ready(function() {
   }
 
   document.querySelectorAll('.cards .card').forEach(card => {
-    // Bouton “Détails” affiché au hover
-    const hover = document.createElement('div');
-    hover.className = 'card-hover';
-    hover.innerHTML = '<button type="button" class="btn btn-sm btn-details">Détails</button>';
-    card.appendChild(hover);
-
+    if (!card.querySelector('.card-hover')){
+      const hover = document.createElement('div');
+      hover.className = 'card-hover';
+      hover.innerHTML = '<button type="button" class="btn btn-sm btn-details">Détails</button>';
+      card.appendChild(hover);
+      hover.querySelector('.btn-details').addEventListener('click', (e) => { e.stopPropagation(); open(); });
+    }
     const open = () => openModal({
-      title: card.dataset.title, desc: card.dataset.desc, stack: card.dataset.stack,
-      github: card.dataset.github, demo: card.dataset.demo
+      title: card.dataset.title,
+      desc:  card.dataset.desc,
+      stack: card.dataset.stack,
+      github: card.dataset.github,
+      img:   card.dataset.img
     });
-
     card.addEventListener('click', open);
-    hover.querySelector('.btn-details').addEventListener('click', (e) => { e.stopPropagation(); open(); });
   });
 
   closeBtn.addEventListener('click', closeModal);

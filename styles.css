@@ -709,3 +709,37 @@ body.modal-open{ overflow:hidden; }
   .hero-portrait.shape-blob .hero-img{ transform: none; }
 }
 
+/* Modal avec image à gauche */
+.modal-with-cover{
+  display: grid;
+  grid-template-columns: var(--modal-img-w) 1fr;
+  align-items: stretch;            /* l'image prend toute la "longueur" (hauteur) */
+  gap: 16px;
+  padding: 16px;
+}
+
+/* remplace l’ancienne version (on supprime aspect-ratio) */
+.modal-media{
+  margin: 0;
+  background: #0f1115;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;                    /* occupe toute la hauteur du contenu */
+  box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
+}
+.modal-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* rempli sans déformer */
+  display: block;
+  transform: translateZ(0);
+}
+
+/* Mobile: on empile, largeur 100% et hauteur raisonnable */
+@media (max-width: 720px){
+  .modal-with-cover{ grid-template-columns: 1fr; }
+  .modal-media{ height: auto; max-height: 40vh; }
+  .modal-image{ width: 100%; height: 100%; object-fit: cover; }
+}
+
