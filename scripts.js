@@ -1,21 +1,24 @@
-$(document).ready(function() {
-    $('.menu-link').click(function() {
-        $('nav ul').toggleClass('active');
-    });
-});
-
-
-// -------------------------------------------------- animation of the section 2
-
 // Navigation hamburger (classe .open)
 (() => {
   const menu = document.querySelector('.menu-link');
   const nav = document.querySelector('header nav');
   if (!menu || !nav) return;
-  const toggle = () => nav.classList.toggle('open');
+
+  const list = nav.querySelector('ul'); // compat CSS existante (ul.active)
+  const toggle = () => {
+    const isOpen = nav.classList.toggle('open');
+    if (list) list.classList.toggle('active', isOpen); // garde l’ancien style si utilisé
+    menu.setAttribute('aria-expanded', String(isOpen));
+  };
   menu.addEventListener('click', toggle);
-  menu.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') toggle(); });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  menu.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    if (list) list.classList.remove('active');
+    menu.setAttribute('aria-expanded','false');
+  }));
 })();
 
 // Smooth scroll avec offset header
@@ -160,12 +163,26 @@ $(document).ready(function() {
     modal.removeAttribute('hidden');
     document.body.classList.add('modal-open');
     closeBtn.focus();
+
+    modal.addEventListener('keydown', trapFocus);
   }
 
   function closeModal(){
     modal.setAttribute('hidden','');
     document.body.classList.remove('modal-open');
     if (lastFocus) lastFocus.focus();
+
+    modal.removeEventListener('keydown', trapFocus);
+  }
+
+  function trapFocus(e){
+    if (e.key !== 'Tab') return;
+    const focusables = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+    const list = Array.from(focusables).filter(el => el.offsetParent !== null);
+    if (!list.length) return;
+    const first = list[0], last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
   }
 
   document.querySelectorAll('.cards .card').forEach(card => {
